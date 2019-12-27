@@ -2,6 +2,7 @@ package com.airri.nemu.model;
 
 public class NemuModel {
 
+    private String id;
     private String fname;
     private String subject;
     private String category;
@@ -26,6 +27,14 @@ public class NemuModel {
         this.status = status;
         this.date = date;
         this.photo = photo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFname() {

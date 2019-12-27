@@ -49,6 +49,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
+    // recycle view
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
 }
 
 //firebase google
