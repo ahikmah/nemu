@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "446452566086",
+    "firebase_url": "https://nemu-airri.firebaseio.com",
+    "project_id": "nemu-airri",
+    "storage_bucket": "nemu-airri.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446452566086:android:594867e80ae036cfa66247",
+        "android_client_info": {
+          "package_name": "com.airri.nemu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446452566086-domtcv75rhm5cc2041uib99k2cdij3n2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.airri.nemu",
+            "certificate_hash": "c53483a79bf04c06c2ddb640fdabdf4574e65872"
+          }
+        },
+        {
+          "client_id": "446452566086-amta0clnt6cclod7e2tim29svs3huhpl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE82eUY8w30X3vVk7g9ZKnCoa7zsKXSKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446452566086-amta0clnt6cclod7e2tim29svs3huhpl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
