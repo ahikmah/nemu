@@ -1,16 +1,204 @@
 package com.airri.nemu.form;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.airri.nemu.R;
+import com.airri.nemu.model.GolekModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-public class formGolek extends AppCompatActivity {
+import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.UUID;
+
+public class formGolek extends AppCompatActivity implements View.OnClickListener {
+
+    // deklarasi variabel
+    private Spinner spCategory;
+    private Button btnUpload, btnSubmit;
+    private EditText etSubject, etDescription, etLocation, etPhone;
+    private ImageView imgPhoto;
+
+    // upload foto
+    private Uri filePath;
+    private final int PICK_IMAGE_REQUEST = 71;
+
+    // Firebase
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+    private FirebaseAuth auth;
+    private FirebaseDatabase database;
+    private DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_golek);
+
+        // dropdown kategori
+        spCategory = findViewById(R.id.golek_sp_category);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCategory.setAdapter(adapter);
+
+        // get instance
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        auth = FirebaseAuth.getInstance();
+        // Mendapatkan Instance dari Database
+        database = FirebaseDatabase.getInstance();
+        dbRef = database.getReference();
+
+        // inisialisasi
+        btnSubmit     = findViewById(R.id.golek_btn_submit);
+        btnUpload     = findViewById(R.id.golek_btn_upload);
+        etSubject     = findViewById(R.id.golek_et_subject);
+        etDescription = findViewById(R.id.golek_et_description);
+        etLocation    = findViewById(R.id.golek_et_location);
+        etPhone       = findViewById(R.id.golek_et_phone);
+        imgPhoto      = findViewById(R.id.golek_img_photo);
+
+        // event klik
+        btnSubmit.setOnClickListener(this);
+        btnUpload.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.golek_btn_submit :
+                uploadGolek();
+                break;
+            case R.id.golek_btn_upload :
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null )
+        {
+            filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                imgPhoto.setImageBitmap(bitmap);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void uploadGolek() {
+        final String subject, category, description, location, phone, filename;
+
+        subject      = etSubject.getText().toString();
+        category     = spCategory.getSelectedItem().toString();
+        description  = etDescription.getText().toString();
+        location     = etLocation.getText().toString();
+        phone        = etPhone.getText().toString();
+
+        //Mendapatkan UserID dari pengguna yang Terautentikasi
+        String userID = auth.getCurrentUser().getUid();
+        String fname  = auth.getCurrentUser().getDisplayName();
+        String date   = DateFormat.getDateTimeInstance().format(new Date());
+
+        if (TextUtils.isEmpty(subject)) {
+            etSubject.setError("Judul belum diisi");
+        } else if (TextUtils.isEmpty(description)) {
+            etDescription.setError("Deskripsi belum diisi");
+        } else if (TextUtils.isEmpty(location)) {
+            etLocation.setError("Lokasi belum diisi");
+        } else if (TextUtils.isEmpty(phone)) {
+            etPhone.setError("Kontak belum diisi");
+        } else {
+            if(filePath != null) {
+                final ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.setTitle("Mengunggah foto...");
+                progressDialog.show();
+
+                filename = UUID.randomUUID().toString();
+
+                StorageReference ref = storageReference.child("images/"+ filename);
+                ref.putFile(filePath)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                progressDialog.dismiss();
+                                Toast.makeText(formGolek.this, "Foto terunggah", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progressDialog.dismiss();
+                                Toast.makeText(formGolek.this, "Gagal "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                        .getTotalByteCount());
+                                progressDialog.setMessage("Sedang mengunggah "+(int)progress+"%");
+                            }
+                        });
+            } else {
+                filename = "";
+            }
+
+            final ProgressDialog progress = new ProgressDialog(this);
+            progress.setTitle("Menambahkan Data...");
+            progress.show();
+
+            dbRef.child("Golek").child(userID).push()
+                    .setValue(new GolekModel(fname, subject, category, description, location, phone, "Belum", date, filename))
+                    .addOnSuccessListener(this, new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            progress.dismiss();
+                            Toast.makeText(formGolek.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progress.dismiss();
+                            Toast.makeText(formGolek.this, "Gagal! "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 }

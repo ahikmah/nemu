@@ -17,4 +17,25 @@
 	<string name="logout">Logout</string>
 	<string name="nemu">Nemu</string>
 	<string name="golek">Golek</string>
+	<string name="info_penemuan_barang">Info Penemuan Barang</string>
+	<string name="title">Judul</string>
+	<string name="tulis_nama_barang">Tulis nama barang</string>
+	<string name="categories">Kategori</string>
+	<string name="description">Deskripsi</string>
+	<string name="tulis_deskripsi_barang">Tulis deskripsi barang</string>
+	<string name="location">Lokasi</string>
+	<string name="tulis_lokasi_penemuan">Tulis lokasi penemuan</string>
+	<string name="contact">Kontak</string>
+	<string name="unggah_foto">Unggah Foto</string>
+	<string name="upload">Unggah</string>
+	<string name="submit">Submit</string>
+	<string name="info_pencarian_barang">Info Pencarian Barang</string>
+	<string name="tulis_lokasi_kehilangan">Tulis lokasi kehilangan</string>
+
+	<string-array name="category">
+		<item>Pakaian</item>
+		<item>Barang</item>
+		<item>Uang</item>
+		<item>Lainnya</item>
+	</string-array>
 </resources>

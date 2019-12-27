@@ -1,7 +1,6 @@
 package com.airri.nemu.model;
 
-public class NemuModel {
-
+public class GolekModel {
     private String fname;
     private String subject;
     private String category;
@@ -12,11 +11,11 @@ public class NemuModel {
     private String date;
     private String photo;
 
-    public NemuModel () {
+    public GolekModel(){
 
     }
 
-    public NemuModel(String fname, String subject, String category, String description, String location, String phone, String status, String date, String photo) {
+    public GolekModel(String fname, String subject, String category, String description, String location, String phone, String status, String date, String photo) {
         this.fname = fname;
         this.subject = subject;
         this.category = category;
