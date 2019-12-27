@@ -15,4 +15,6 @@
 	<string name="login_failed">"Login failed"</string>
 	<string name="title_profile">Profile</string>
 	<string name="logout">Logout</string>
+	<string name="nemu">Nemu</string>
+	<string name="golek">Golek</string>
 </resources>
