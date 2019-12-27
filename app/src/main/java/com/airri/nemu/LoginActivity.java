@@ -70,4 +70,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         }
     }
+
+    // mencegah aksi back
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }
