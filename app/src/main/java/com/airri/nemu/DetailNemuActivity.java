@@ -28,7 +28,7 @@ public class DetailNemuActivity extends AppCompatActivity {
     private DatabaseReference nemuRef;
 
     // deklarasi variabel
-    private String id, img;
+    private String id, type;
     private NemuModel nemuDetail;
     private ProgressBar pbDetail;
     private TextView tvName, tvSubject, tvCategory, tvDescription, tvLocation, tvPhone, tvStatus, tvDate;
@@ -38,7 +38,8 @@ public class DetailNemuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_nemu);
-        id = getIntent().getStringExtra("KEY_EXTRA");
+        id   = getIntent().getStringExtra("KEY_EXTRA");
+        type = getIntent().getStringExtra("TYPE_EXTRA");
         getSupportActionBar().setTitle("Loading...");
 
         // inisialisasi
@@ -60,7 +61,7 @@ public class DetailNemuActivity extends AppCompatActivity {
 
     private void getData() {
         pbDetail.setVisibility(View.VISIBLE);
-        nemuRef = FirebaseDatabase.getInstance().getReference().child("Nemu");
+        nemuRef = FirebaseDatabase.getInstance().getReference().child(type);
 
         Query q = nemuRef.orderByKey().equalTo(id);
 

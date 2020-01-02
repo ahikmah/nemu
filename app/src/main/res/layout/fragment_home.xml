@@ -163,132 +163,45 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <TextView
-                android:id="@+id/tv_title_find"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_title_find"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Mari Bantu Mereka"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cv_header" />\
+
+                <TextView
+                    android:id="@+id/tv_golek_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="More" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/pb_list_golek_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:text="Mari Bantu Mereka"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cv_header" />
+                android:layout_centerInParent="true"/>
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@drawable/mrngehek"
-                    app:civ_shadow_radius="10" />
-
-                <TextView
-                    android:id="@+id/tv_people1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="7dp"
-                    android:layout_weight="1"
-                    android:text="Dompet saya hilang di sekitar kampus"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@drawable/mrngehek"
-                    app:civ_shadow_radius="10" />
-
-                <TextView
-                    android:id="@+id/tv_people2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="7dp"
-                    android:layout_weight="1"
-                    android:text="Baju saya hilang, tolong carikan"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@drawable/mrngehek"
-                    app:civ_shadow_radius="10" />
-
-                <TextView
-                    android:id="@+id/tv_people3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="7dp"
-                    android:layout_weight="1"
-                    android:text="Yang ngambil sandalku tolong balikin"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@drawable/mrngehek"
-                    app:civ_shadow_radius="10" />
-
-                <TextView
-                    android:id="@+id/tv_people4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="7dp"
-                    android:layout_weight="1"
-                    android:text="Punten Slurr"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@drawable/mrngehek"
-                    app:civ_shadow_radius="10" />
-
-                <TextView
-                    android:id="@+id/tv_people5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="7dp"
-                    android:layout_weight="1"
-                    android:text="Open Jasa Skripsi PM"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list_golek_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </ScrollView>
 
         </LinearLayout>
     </ScrollView>

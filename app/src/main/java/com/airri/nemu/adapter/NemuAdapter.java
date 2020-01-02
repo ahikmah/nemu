@@ -28,9 +28,11 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> {
     //Deklarasi Variable
     private List<NemuModel> listNemu;
     private Context context;
+    private String type;
 
-    public NemuAdapter(Context context) {
+    public NemuAdapter(Context context, String type) {
         this.context = context;
+        this.type = type;
         listNemu = new ArrayList<>();
     }
 
@@ -56,6 +58,7 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> {
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailNemuActivity.class);
                 intent.putExtra("KEY_EXTRA", listNemu.get(position).getId());
+                intent.putExtra("TYPE_EXTRA", type);
                 context.startActivity(intent);
             }
         });

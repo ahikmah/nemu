@@ -84,7 +84,6 @@ public class DashboardFragment extends Fragment {
 
                 //set data ke adapter
                 nemuAdapter.setData(dataNemu);
-                rvNemu.scrollToPosition(dataNemu.size()-1);
                 Toast.makeText(getContext(),"Data berhasil dimuat", Toast.LENGTH_SHORT).show();
             }
 
@@ -97,7 +96,7 @@ public class DashboardFragment extends Fragment {
 
     private void setRV() {
         // inisialisasi adapter
-        nemuAdapter = new NemuAdapter(getContext());
+        nemuAdapter = new NemuAdapter(getContext(), "Nemu");
         rvNemu.setAdapter(nemuAdapter);
         rvNemu.setLayoutManager(new LinearLayoutManager(getContext()));
     }

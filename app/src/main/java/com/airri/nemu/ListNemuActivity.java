@@ -35,7 +35,7 @@ public class ListNemuActivity extends AppCompatActivity  {
     private RecyclerView rvNemu;
     private ProgressBar pbList;
     private ScrollView svList;
-    private String category;
+    private String category, type;
 
     //deklarasi adapter
     private NemuAdapter nemuAdapter;
@@ -44,8 +44,6 @@ public class ListNemuActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_nemu);
-        category = getIntent().getStringExtra("CATEGORY_EXTRA");
-        getSupportActionBar().setTitle(category);
 
         // inisialisasi firebase auth
         auth = FirebaseAuth.getInstance();
@@ -55,11 +53,55 @@ public class ListNemuActivity extends AppCompatActivity  {
         pbList = findViewById(R.id.pb_list_nemu);
         svList = findViewById(R.id.sv_list_nemu);
 
-        // mengatur recycler view
-        setRV();
+        if (getIntent().getStringExtra("TYPE_EXTRA") != null) {
+            type = getIntent().getStringExtra("TYPE_EXTRA");
+            getSupportActionBar().setTitle(type);
 
-        // mendapatkan data dari firebase
-        getData();
+            // mendapatkan data dari firebase
+            getDataGolek();
+
+            // mengatur recycler view
+            setRV(type);
+        } else {
+            category = getIntent().getStringExtra("CATEGORY_EXTRA");
+            getSupportActionBar().setTitle(category);
+
+            // mendapatkan data dari firebase
+            getData();
+
+            // mengatur recycler view
+            setRV("Nemu");
+        }
+    }
+
+    private void getDataGolek() {
+        pbList.setVisibility(View.VISIBLE);
+        nemuRef = FirebaseDatabase.getInstance().getReference().child(type);
+
+        Query q = nemuRef.orderByChild("status");
+
+        q.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                dataNemu = new ArrayList<>();
+
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    NemuModel temp = snapshot.getValue(NemuModel.class);
+                    temp.setId(snapshot.getKey());
+                    dataNemu.add(temp);
+                }
+
+                //set data ke adapter
+                nemuAdapter.setData(dataNemu);
+                pbList.setVisibility(View.GONE);
+                //Toast.makeText(ListNemuActivity.this,"Data berhasil dimuat", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(ListNemuActivity.this,"Data Gagal Dimuat", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getData() {
@@ -93,9 +135,9 @@ public class ListNemuActivity extends AppCompatActivity  {
         });
     }
 
-    private void setRV() {
+    private void setRV(String t) {
         // inisialisasi adapter
-        nemuAdapter = new NemuAdapter(ListNemuActivity.this);
+        nemuAdapter = new NemuAdapter(ListNemuActivity.this, t);
         rvNemu.setAdapter(nemuAdapter);
         rvNemu.setLayoutManager(new LinearLayoutManager(ListNemuActivity.this));
     }

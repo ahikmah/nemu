@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airri.nemu.R;
@@ -42,6 +43,7 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
     private Button btnUpload, btnSubmit;
     private EditText etSubject, etDescription, etLocation, etPhone;
     private ImageView imgPhoto;
+    private TextView tvTitle;
     private String type;
 
     // upload foto
@@ -68,6 +70,13 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
 
         type = getIntent().getStringExtra("TYPE_EXTRA");
         getSupportActionBar().setTitle(type);
+        tvTitle = findViewById(R.id.tv_title);
+
+        if (type == "Golek") {
+            tvTitle.setText("Info Pencarian");
+        } else {
+            tvTitle.setText("Info Penemuan");
+        }
 
         // get instance
         storage = FirebaseStorage.getInstance();
