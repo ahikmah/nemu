@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.airri.nemu.form.formGolek;
 import com.airri.nemu.form.formNemu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         if(auth.getCurrentUser() == null){
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-        } else {
-            //sek
         }
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -61,17 +58,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setMode(int itemId) {
-        Intent intent;
+        Intent intent = new Intent(MainActivity.this, formNemu.class);
         switch (itemId) {
             case R.id.action_nemu :
-                intent = new Intent(MainActivity.this, formNemu.class);
-                startActivity(intent);
+                intent.putExtra("TYPE_EXTRA", "Nemu");
                 break;
 
             case R.id.action_golek :
-                intent = new Intent(MainActivity.this, formGolek.class);
-                startActivity(intent);
+                intent.putExtra("TYPE_EXTRA", "Golek");
                 break;
         }
+        startActivity(intent);
     }
 }

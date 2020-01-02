@@ -13,7 +13,8 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
-		<activity android:name=".form.formGolek" />
+		<activity android:name=".DetailNemuActivity"></activity>
+		<activity android:name=".ListNemuActivity" />
 		<activity android:name=".form.formNemu" />
 		<activity android:name=".LoginActivity" />
 		<activity

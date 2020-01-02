@@ -42,6 +42,7 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
     private Button btnUpload, btnSubmit;
     private EditText etSubject, etDescription, etLocation, etPhone;
     private ImageView imgPhoto;
+    private String type;
 
     // upload foto
     private Uri filePath;
@@ -65,10 +66,14 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategory.setAdapter(adapter);
 
+        type = getIntent().getStringExtra("TYPE_EXTRA");
+        getSupportActionBar().setTitle(type);
+
         // get instance
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         auth = FirebaseAuth.getInstance();
+
         // Mendapatkan Instance dari Database
         database = FirebaseDatabase.getInstance();
         dbRef = database.getReference();
@@ -182,8 +187,8 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
             progress.setTitle("Menambahkan Data...");
             progress.show();
 
-            dbRef.child("Nemu").child(userID).push()
-                    .setValue(new NemuModel(fname, subject, category, description, location, phone, "Belum", date, filename))
+            dbRef.child(type).push()
+                    .setValue(new NemuModel(userID, fname, subject, category, description, location, phone, "Belum", date, filename))
                     .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

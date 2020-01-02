@@ -6,13 +6,15 @@
 	android:layout_height="wrap_content"
 	android:background="#FFFFFF"
 	android:gravity="center"
-	android:orientation="horizontal">
+	android:orientation="horizontal"
+	android:padding="5dp"
+	android:layout_marginBottom="2dp">
 
 	<com.mikhaellopez.circularimageview.CircularImageView
 		android:id="@+id/img_thumb"
 		android:layout_width="80dp"
 		android:layout_height="80dp"
-		android:src="@drawable/mrngehek"
+		android:src="@drawable/lainnya"
 		app:civ_shadow_radius="10" />
 
 	<LinearLayout
@@ -46,18 +48,32 @@
 			android:layout_marginTop="4dp">
 
 			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="@string/category"
+				android:textStyle="bold"/>
+
+			<TextView
 				android:id="@+id/tv_category"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
-				android:text="@string/category" />
+				android:text="" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="@string/status"
+				android:textStyle="bold"/>
 
 			<TextView
 				android:id="@+id/tv_status"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
-				android:text="@string/status" />
+				android:text="" />
 		</LinearLayout>
 
 	</LinearLayout>

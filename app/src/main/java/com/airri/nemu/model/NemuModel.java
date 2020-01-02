@@ -3,6 +3,7 @@ package com.airri.nemu.model;
 public class NemuModel {
 
     private String id;
+    private String googleid;
     private String fname;
     private String subject;
     private String category;
@@ -17,7 +18,8 @@ public class NemuModel {
 
     }
 
-    public NemuModel(String fname, String subject, String category, String description, String location, String phone, String status, String date, String photo) {
+    public NemuModel(String googleid, String fname, String subject, String category, String description, String location, String phone, String status, String date, String photo) {
+        this.googleid = googleid;
         this.fname = fname;
         this.subject = subject;
         this.category = category;
@@ -107,5 +109,13 @@ public class NemuModel {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getGoogleid() {
+        return googleid;
+    }
+
+    public void setGoogleid(String googleid) {
+        this.googleid = googleid;
     }
 }

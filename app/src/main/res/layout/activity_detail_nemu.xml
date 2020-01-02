@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".DetailNemuActivity"
+	android:orientation="vertical">
+
+	<ProgressBar
+		android:id="@+id/pb_detail_nemu"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"/>
+
+	<TextView
+		android:id="@+id/tv_nemu_fname"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="TextView" />
+
+	<TextView
+		android:id="@+id/tv_nemu_subject"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="TextView" />
+
+	<TextView
+		android:id="@+id/tv_nemu_category"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="TextView" />
+
+	<TextView
+		android:id="@+id/tv_nemu_description"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="TextView" />
+
+	<TextView
+		android:id="@+id/tv_nemu_location"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="TextView" />
+
+	<TextView
+		android:id="@+id/tv_nemu_phone"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="TextView" />
+
+	<TextView
+		android:id="@+id/tv_nemu_status"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="TextView" />
+
+	<TextView
+		android:id="@+id/tv_nemu_date"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="TextView" />
+
+	<ImageView
+		android:id="@+id/img_detail_nemu"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:srcCompat="@drawable/lainnya" />
+
+
+</LinearLayout>

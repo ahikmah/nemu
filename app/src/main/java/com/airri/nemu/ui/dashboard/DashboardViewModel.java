@@ -31,11 +31,11 @@ public class DashboardViewModel extends ViewModel {
         // inisialisasi
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        nemuRef = database.getReference().child("Nemu").child(auth.getUid());
+        nemuRef = database.getReference().child("Nemu");
 
         nemuRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 List<NemuModel> tempNemu = new ArrayList<>();
                 for (DataSnapshot data : dataSnapshot.getChildren()){
                     NemuModel nemu = data.getValue(NemuModel.class);

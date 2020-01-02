@@ -28,8 +28,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         //menghilangkan title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
 
         // inisialisasi variabel
         btnLogin = findViewById(R.id.btn_login);

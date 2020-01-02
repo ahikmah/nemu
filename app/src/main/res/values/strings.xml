@@ -1,6 +1,6 @@
 <resources>
 	<string name="app_name">Nemu</string>
-    <string name="title_login">Login</string>
+	<string name="title_login">Login</string>
 	<string name="title_home">Home</string>
 	<string name="title_dashboard">Dashboard</string>
 	<string name="title_notifications">Notifications</string>
@@ -39,6 +39,12 @@
 	<string name="tulis_lokasi_kehilangan">Tulis lokasi kehilangan</string>
 	<string name="category">Kategori: </string>
 	<string name="status">Status:</string>
+	<string name="barang">Barang</string>
+	<string name="pakaian">Pakaian</string>
+	<string name="uang">Uang</string>
+	<string name="hewan">Hewan</string>
+	<string name="lainnya">Lainnya</string>
+	<string name="penemuan">Penemuan</string>
 
 	<string-array name="category">
 		<item>Pakaian</item>

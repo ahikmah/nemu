@@ -1,22 +1,17 @@
-package com.airri.nemu.ui.dashboard;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TabHost;
-import android.widget.Toast;
+package com.airri.nemu;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airri.nemu.R;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
+import android.widget.Toast;
+
 import com.airri.nemu.adapter.NemuAdapter;
 import com.airri.nemu.model.NemuModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,54 +19,57 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class DashboardFragment extends Fragment {
+public class ListNemuActivity extends AppCompatActivity  {
 
-    // ga ke pake
-    private DashboardViewModel dashboardViewModel;
-
-    // deklarasi variabel
+    // deklarasi variabel firebase
     private DatabaseReference nemuRef;
     private FirebaseAuth auth;
     private ArrayList<NemuModel> dataNemu;
 
-    //Deklarasi Variable untuk RecyclerView
+    //Deklarasi Variable
     private RecyclerView rvNemu;
+    private ProgressBar pbList;
+    private ScrollView svList;
+    private String category;
 
     //deklarasi adapter
     private NemuAdapter nemuAdapter;
 
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list_nemu);
+        category = getIntent().getStringExtra("CATEGORY_EXTRA");
+        getSupportActionBar().setTitle(category);
 
         // inisialisasi firebase auth
         auth = FirebaseAuth.getInstance();
 
-        //inisialiassi
-        rvNemu = root.findViewById(R.id.rv_item_nemu);
+        //inisialisasi
+        rvNemu = findViewById(R.id.rv_list_nemu);
+        pbList = findViewById(R.id.pb_list_nemu);
+        svList = findViewById(R.id.sv_list_nemu);
 
         // mengatur recycler view
         setRV();
 
         // mendapatkan data dari firebase
         getData();
-
-        return root;
     }
 
     private void getData() {
-        Toast.makeText(getContext(), "Tunggu sebentar...", Toast.LENGTH_SHORT);
 
-        nemuRef = FirebaseDatabase.getInstance().getReference();
+        pbList.setVisibility(View.VISIBLE);
+        nemuRef = FirebaseDatabase.getInstance().getReference().child("Nemu");
 
-        nemuRef.child("Nemu").addValueEventListener(new ValueEventListener() {
+        Query q = nemuRef.orderByChild("category").equalTo(category);
+
+        q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dataNemu = new ArrayList<>();
@@ -84,22 +82,21 @@ public class DashboardFragment extends Fragment {
 
                 //set data ke adapter
                 nemuAdapter.setData(dataNemu);
-                rvNemu.scrollToPosition(dataNemu.size()-1);
-                Toast.makeText(getContext(),"Data berhasil dimuat", Toast.LENGTH_SHORT).show();
+                pbList.setVisibility(View.GONE);
+                //Toast.makeText(ListNemuActivity.this,"Data berhasil dimuat", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(),"Data Gagal Dimuat", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListNemuActivity.this,"Data Gagal Dimuat", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void setRV() {
         // inisialisasi adapter
-        nemuAdapter = new NemuAdapter(getContext());
+        nemuAdapter = new NemuAdapter(ListNemuActivity.this);
         rvNemu.setAdapter(nemuAdapter);
-        rvNemu.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvNemu.setLayoutManager(new LinearLayoutManager(ListNemuActivity.this));
     }
-
 }

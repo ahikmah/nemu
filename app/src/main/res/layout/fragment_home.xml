@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="Barang Hilang"
+                android:text="@string/penemuan"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_slider1"
+                        android:id="@+id/cv_pakaian"
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
@@ -86,12 +86,12 @@
                             android:id="@+id/tv_slider1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/dummy" />
+                            android:text="@string/pakaian" />
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_slider2"
+                        android:id="@+id/cv_barang"
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
@@ -109,12 +109,12 @@
                             android:id="@+id/tv_slider2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/dummy" />
+                            android:text="@string/barang" />
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_slider3"
+                        android:id="@+id/cv_uang"
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
@@ -133,12 +133,12 @@
                             android:id="@+id/tv_slider3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/dummy" />
+                            android:text="@string/uang" />
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_slider4"
+                        android:id="@+id/cv_lainnya"
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
@@ -156,7 +156,7 @@
                             android:id="@+id/tv_slider4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/dummy" />
+                            android:text="@string/lainnya" />
 
                     </androidx.cardview.widget.CardView>
 
