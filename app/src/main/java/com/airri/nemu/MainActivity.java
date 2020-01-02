@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Memulai login
         if(auth.getCurrentUser() == null){
+            finish();
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }

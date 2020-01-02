@@ -78,9 +78,7 @@ public class ProfileFragment extends Fragment {
                 Toast toast = Toast.makeText(getActivity(), "Logout berhasil", Toast.LENGTH_SHORT);
                 toast.show();
 
-                // membuka activity login
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
+                getActivity().finish();
             }
         });
 

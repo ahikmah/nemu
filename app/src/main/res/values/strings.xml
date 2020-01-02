@@ -45,11 +45,17 @@
 	<string name="hewan">Hewan</string>
 	<string name="lainnya">Lainnya</string>
 	<string name="penemuan">Penemuan</string>
+	<string name="aku_nemu">Aku Nemu</string>
+	<string name="aku_golek">Aku Golek</string>
 
 	<string-array name="category">
 		<item>Pakaian</item>
 		<item>Barang</item>
 		<item>Uang</item>
 		<item>Lainnya</item>
+	</string-array>
+	<string-array name="type">
+		<item>Nemu</item>
+		<item>Golek</item>
 	</string-array>
 </resources>
