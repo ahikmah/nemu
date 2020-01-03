@@ -50,6 +50,7 @@ public class ListNemuActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_nemu);
 
+
         // inisialisasi firebase auth
         auth = FirebaseAuth.getInstance();
 

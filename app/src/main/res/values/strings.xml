@@ -37,8 +37,8 @@
 	<string name="submit">Submit</string>
 	<string name="info_pencarian_barang">Info Pencarian Barang</string>
 	<string name="tulis_lokasi_kehilangan">Tulis lokasi kehilangan</string>
-	<string name="category">Kategori: </string>
-	<string name="status">Status:</string>
+	<string name="category">Kategori :</string>
+	<string name="status">Status :</string>
 	<string name="barang">Barang</string>
 	<string name="pakaian">Pakaian</string>
 	<string name="uang">Uang</string>

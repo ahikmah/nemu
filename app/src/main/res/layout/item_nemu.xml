@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/list_item"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="4dp"
 			android:text=""
-			android:textSize="15sp"
+			android:textSize="16sp"
 			android:textStyle="bold" />
 
 		<TextView
@@ -41,40 +42,62 @@
 			android:layout_marginTop="4dp"
 			android:text="" />
 
-		<LinearLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			android:layout_marginTop="4dp">
+			android:layout_marginTop="4dp"
+			android:orientation="horizontal">
 
 			<TextView
-				android:layout_width="match_parent"
+				android:id="@+id/textView"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:text="@string/category"
-				android:textStyle="bold"/>
+				android:textStyle="bold"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
 
 			<TextView
 				android:id="@+id/tv_category"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_height="19dp"
+				android:layout_marginLeft="5dp"
 				android:layout_weight="1"
-				android:text="" />
+				android:text=""
+				android:background="@drawable/badge_blue"
+				android:textColor="#FFFFFF"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toEndOf="@+id/textView"
+				app:layout_constraintTop_toTopOf="parent" />
 
 			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:id="@+id/textView2"
+				android:layout_width="wrap_content"
+				android:layout_height="19dp"
+				android:layout_marginStart="24dp"
+				android:layout_marginLeft="24dp"
 				android:layout_weight="1"
 				android:text="@string/status"
-				android:textStyle="bold"/>
+				android:textStyle="bold"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toEndOf="@+id/tv_category"
+				app:layout_constraintTop_toTopOf="parent" />
 
 			<TextView
 				android:id="@+id/tv_status"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_height="19dp"
+				android:layout_marginLeft="5dp"
 				android:layout_weight="1"
-				android:text="" />
-		</LinearLayout>
+				android:background="@drawable/badge_tosca"
+				android:text=""
+				android:textColor="#FFFFFF"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toEndOf="@+id/textView2"
+				app:layout_constraintTop_toTopOf="parent" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
 
 	</LinearLayout>
 

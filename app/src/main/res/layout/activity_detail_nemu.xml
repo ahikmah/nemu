@@ -60,7 +60,7 @@
 		android:id="@+id/tv_nemu_category"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:background="#3F51B5"
+		android:background="@drawable/badge_tosca"
 		android:padding="3dp"
 		android:text="TextView"
 		android:textColor="#FFFFFF"
@@ -69,7 +69,8 @@
 
 	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:scrollbars="none">
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -186,7 +187,7 @@
 				android:id="@+id/btn_call"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:background="#3F51B5"
+				android:background="@drawable/btn_upload"
 				android:text="Telepon"
 				android:textColor="#FFFFFF" />
 
@@ -223,7 +224,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:text="Saya menemukannya"
-					android:background="#3F51B5"
+					android:background="@drawable/btn_rounded"
 					android:textColor="#FFFFFF"
 					/>
 

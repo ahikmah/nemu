@@ -142,7 +142,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        String category = "Lainnya";
+        String category = "lainnya";
         switch (view.getId()) {
             case R.id.cv_pakaian :
                 category = "Pakaian";
@@ -154,7 +154,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 category = "Uang";
                 break;
             case R.id.cv_lainnya :
-                category = "Lainnya";
+                category = "lainnya";
                 break;
         }
         Intent intent = new Intent(getActivity(), ListNemuActivity.class);
