@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,10 +35,11 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> {
+public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> implements Filterable {
 
     //Deklarasi Variable
     private List<NemuModel> listNemu;
+    private List<NemuModel> listNemuFiltered;
     private Context context;
     private String type, guid;
 
@@ -49,6 +52,7 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> {
         this.context = context;
         this.type = type;
         listNemu = new ArrayList<>();
+        listNemuFiltered = new ArrayList<>();
 
         // Mendapatkan Instance dari Database
         auth = FirebaseAuth.getInstance();
@@ -60,6 +64,7 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> {
     public void setData(List<NemuModel> data) {
         listNemu.clear();
         listNemu.addAll(data);
+        listNemuFiltered = listNemu;
         notifyDataSetChanged();
     }
 
@@ -73,18 +78,18 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        holder.bindView(listNemu.get(position));
+        holder.bindView(listNemuFiltered.get(position));
         holder.listItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailNemuActivity.class);
-                intent.putExtra("KEY_EXTRA", listNemu.get(position).getId());
+                intent.putExtra("KEY_EXTRA", listNemuFiltered.get(position).getId());
                 intent.putExtra("TYPE_EXTRA", type);
                 context.startActivity(intent);
             }
         });
 
-        String uid = listNemu.get(position).getGoogleid();
+        String uid = listNemuFiltered.get(position).getGoogleid();
         if (uid.equals(guid)) {
             holder.listItem.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -97,18 +102,18 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> {
                             switch (i){
                                 case 0:
                                     Intent intent = new Intent(context, formNemu.class);
-                                    intent.putExtra("KEY_EXTRA", listNemu.get(position).getId());
+                                    intent.putExtra("KEY_EXTRA", listNemuFiltered.get(position).getId());
                                     intent.putExtra("TYPE_EXTRA", type);
                                     context.startActivity(intent);
                                     break;
                                 case 1:
                                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                                     builder.setTitle("Hapus");
-                                    builder.setMessage("Apakah anda yakin akan menghapus "+listNemu.get(position).getSubject()+"?");
+                                    builder.setMessage("Apakah anda yakin akan menghapus "+listNemuFiltered.get(position).getSubject()+"?");
                                     builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
                                             if(dbRef != null){
-                                                dbRef.child(type).child(listNemu.get(position).getId()).removeValue()
+                                                dbRef.child(type).child(listNemuFiltered.get(position).getId()).removeValue()
                                                         .addOnSuccessListener(new OnSuccessListener() {
                                                             @Override
                                                             public void onSuccess(Object o) {
@@ -142,7 +147,42 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return listNemu.size();
+        return listNemuFiltered.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    listNemuFiltered = listNemu;
+                } else {
+                    List<NemuModel> filteredList = new ArrayList<>();
+                    for (NemuModel row : listNemu) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.getDescription().toLowerCase().contains(charString.toLowerCase()) || row.getPhone().contains(charSequence)) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    listNemuFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = listNemuFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listNemuFiltered = (ArrayList<NemuModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

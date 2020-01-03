@@ -47,6 +47,8 @@
 	<string name="penemuan">Penemuan</string>
 	<string name="aku_nemu">Aku Nemu</string>
 	<string name="aku_golek">Aku Golek</string>
+	<string name="search_hint">Deskripsi barang...</string>
+	<string name="action_search">Cari</string>
 
 	<string-array name="category">
 		<item>Pakaian</item>
