@@ -34,14 +34,14 @@
 		<TextView
 			android:id="@+id/tv_nemu_date"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_gravity="end"
 			android:layout_weight="1"
+			android:padding="2dp"
 			android:text="TextView"
-			android:textColor="#3F51B5"
-			android:textSize="14sp"
 			android:textAlignment="center"
-			android:layout_gravity="right"
-			android:paddingLeft="9dp"
+			android:textColor="#3F51B5"
+			android:textSize="12sp"
 			android:textStyle="italic" />
 
 	</LinearLayout>
@@ -91,7 +91,8 @@
 				android:layout_weight="1"
 				android:text="TextView"
 				android:textColor="#000000"
-				android:textSize="15sp" />
+				android:textSize="15sp"
+				/>
 
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -146,20 +147,20 @@
 
 				<TextView
 					android:id="@+id/tv_nemu_location"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
+					android:layout_width="60dp"
+					android:layout_height="67dp"
 					android:layout_weight="1"
 					android:background="#0F2196F3"
 					android:padding="5dp"
-					android:text="basement 5"
+					android:text="basement 5 belakang rumh"
 					android:textAlignment="center"
 					android:textColor="#000000"
 					android:textSize="15sp" />
 
 				<TextView
 					android:id="@+id/tv_nemu_phone"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
+					android:layout_width="60dp"
+					android:layout_height="67dp"
 					android:layout_weight="1"
 					android:background="#0F2196F3"
 					android:padding="5dp"
@@ -170,8 +171,8 @@
 
 				<TextView
 					android:id="@+id/tv_nemu_status"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
+					android:layout_width="55dp"
+					android:layout_height="67dp"
 					android:layout_weight="1"
 					android:background="#0F2196F3"
 					android:padding="5dp"
@@ -211,21 +212,19 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_gravity="center"
-					android:text="INFO PENEMUAN"
-					android:textSize="15sp"
-					android:textStyle="bold"
-					android:textColor="#000000"
 					android:padding="5dp"
-					/>
+					android:text="INFO PENEMUAN"
+					android:textColor="#000000"
+					android:textSize="15sp"
+					android:textStyle="bold" />
 
 				<Button
 					android:id="@+id/btn_found"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:background="#FC1807"
 					android:text="Saya menemukannya"
-					android:background="#3F51B5"
-					android:textColor="#FFFFFF"
-					/>
+					android:textColor="#FFFFFF" />
 
 				<LinearLayout
 					android:layout_width="match_parent"
@@ -253,7 +252,7 @@
 						android:id="@+id/btn_founder_call"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:background="#3F51B5"
+						android:background="#FC1807"
 						android:text="Telepon"
 						android:textColor="#FFFFFF" />
 				</LinearLayout>
