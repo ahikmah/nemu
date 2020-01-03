@@ -5,8 +5,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".DetailNemuActivity"
-	android:orientation="vertical"
-	android:padding="20dp">
+	android:orientation="vertical">
 
 	<ProgressBar
 		android:id="@+id/pb_detail_nemu"
@@ -14,69 +13,70 @@
 		android:layout_height="wrap_content"
 		android:layout_centerInParent="true"/>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:paddingBottom="8dp"
-		>
-
-		<TextView
-			android:id="@+id/tv_nemu_fname"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="TextView"
-			android:textColor="#3F51B5"
-			android:textSize="14sp"
-			android:textStyle="bold" />
-
-		<TextView
-			android:id="@+id/tv_nemu_date"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="TextView"
-			android:textColor="#3F51B5"
-			android:textSize="14sp"
-			android:textAlignment="center"
-			android:layout_gravity="right"
-			android:paddingLeft="9dp"
-			android:textStyle="italic" />
-
-	</LinearLayout>
-
-	<TextView
-		android:id="@+id/tv_nemu_subject"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="TextView"
-		android:textColor="#000000"
-		android:textSize="28sp"
-		android:paddingBottom="5dp"
-		android:textStyle="bold" />
-
-	<TextView
-		android:id="@+id/tv_nemu_category"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@drawable/badge_tosca"
-		android:padding="3dp"
-		android:text="TextView"
-		android:textColor="#FFFFFF"
-		android:textSize="11sp"
-		android:textStyle="italic" />
-
 	<ScrollView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:scrollbars="none">
+		android:scrollbars="none"
+		android:paddingLeft="15dp"
+		android:paddingRight="15dp">
 
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:padding="20dp">
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:paddingBottom="8dp"
+				android:layout_marginTop="10dp">
+
+				<TextView
+					android:id="@+id/tv_nemu_fname"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="TextView"
+					android:textColor="#3F51B5"
+					android:textSize="14sp"
+					android:textStyle="bold" />
+
+				<TextView
+					android:id="@+id/tv_nemu_date"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="end"
+					android:layout_weight="1"
+					android:paddingLeft="9dp"
+					android:text="TextView"
+					android:textAlignment="textEnd"
+					android:textColor="#3F51B5"
+					android:textSize="14sp"
+					android:textStyle="italic" />
+
+			</LinearLayout>
+
+			<TextView
+				android:id="@+id/tv_nemu_subject"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingBottom="5dp"
+				android:text="TextView"
+				android:textColor="#000000"
+				android:textSize="28sp"
+				android:textStyle="bold" />
+
+			<TextView
+				android:id="@+id/tv_nemu_category"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:background="@drawable/badge_tosca"
+				android:padding="3dp"
+				android:text="TextView"
+				android:textColor="#FFFFFF"
+				android:textSize="11sp"
+				android:textStyle="italic" />
 
 			<ImageView
 				android:id="@+id/img_detail_nemu"
@@ -187,7 +187,7 @@
 				android:id="@+id/btn_call"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:background="@drawable/btn_upload"
+				android:background="#3F51B5"
 				android:text="Telepon"
 				android:textColor="#FFFFFF" />
 
@@ -195,8 +195,7 @@
 				android:id="@+id/found_info"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="vertical"
-				android:padding="20dp">
+				android:orientation="vertical">
 
 				<TextView
 					android:layout_width="wrap_content"
@@ -224,7 +223,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:text="Saya menemukannya"
-					android:background="@drawable/btn_rounded"
+					android:background="#3F51B5"
 					android:textColor="#FFFFFF"
 					/>
 
@@ -254,7 +253,7 @@
 						android:id="@+id/btn_founder_call"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:background="#3F51B5"
+						android:background="@drawable/btn_upload"
 						android:text="Telepon"
 						android:textColor="#FFFFFF" />
 				</LinearLayout>

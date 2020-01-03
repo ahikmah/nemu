@@ -5,23 +5,32 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".FounderFormActivity"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:paddingLeft="20dp"
+	android:paddingRight="20dp">
 
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Nama" />
+		android:text="Nama"
+		android:textSize="16sp"
+		android:textStyle="bold"
+		android:layout_marginTop="20dp"/>
 
 	<EditText
 		android:id="@+id/et_founder_name"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="Name" />
+		android:text="Name"
+		android:background="@drawable/input"/>
 
 	<TextView
-		android:layout_width="match_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Kontak" />
+		android:text="Kontak"
+		android:textSize="16sp"
+		android:textStyle="bold"
+		android:layout_marginTop="16dp"/>
 
 	<EditText
 		android:id="@+id/et_founder_phone"
@@ -29,11 +38,15 @@
 		android:layout_height="wrap_content"
 		android:ems="10"
 		android:maxLength="13"
-		android:inputType="phone" />
+		android:inputType="phone"
+		android:background="@drawable/input"/>
 
 	<Button
 		android:id="@+id/btn_founder_submit"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="Simpan" />
+		android:text="Simpan"
+		android:layout_marginTop="15dp"
+		android:background="@drawable/btn_rounded"
+		android:textColor="#FFFFFF"/>
 </LinearLayout>
