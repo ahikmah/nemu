@@ -136,7 +136,7 @@
 					android:adjustViewBounds="true"
 					android:scaleType="centerCrop"
 					android:layout_weight="1"
-					android:src="@drawable/ic_launcher_background" />
+					android:src="@drawable/lainnya" />
 
 				<Button
 					android:id="@+id/nemu_btn_upload"

@@ -15,17 +15,24 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airri.nemu.DetailNemuActivity;
+import com.airri.nemu.DownloadImageAsync;
 import com.airri.nemu.R;
 import com.airri.nemu.model.NemuModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -44,10 +51,12 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
     private EditText etSubject, etDescription, etLocation, etPhone;
     private ImageView imgPhoto;
     private TextView tvTitle;
+    private NemuModel nemuTemp, nemuModel;
     private String type, id;
     private Boolean isUpdate = false;
     private Boolean isDataSaved = false;
     private Boolean isImageSaved = false;
+    private Boolean isImageChanged = false;
 
     // upload foto
     private Uri filePath;
@@ -78,6 +87,7 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
         if (getIntent().getStringExtra("KEY_EXTRA") != null) {
             isUpdate = true;
             id = getIntent().getStringExtra("KEY_EXTRA");
+            getData();
         }
 
         if (type.equals("Golek")) {
@@ -109,6 +119,58 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
         btnUpload.setOnClickListener(this);
     }
 
+    private void getData() {
+        final ProgressDialog pb = new ProgressDialog(formNemu.this);
+        pb.setTitle("Memuat...");
+        pb.show();
+
+        nemuTemp = new NemuModel();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(type);
+        Query q = ref.orderByKey().equalTo(id);
+
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    nemuTemp = snapshot.getValue(NemuModel.class);
+                    nemuTemp.setId(snapshot.getKey());
+                }
+
+                // menampilkan data;
+                String cat = nemuTemp.getCategory();
+                etSubject.setText(nemuTemp.getSubject());
+                etDescription.setText(nemuTemp.getDescription());
+                etLocation.setText(nemuTemp.getLocation());
+                etPhone.setText(nemuTemp.getPhone());
+
+                if (cat.equals("Pakaian")) {
+                    spCategory.setSelection(0);
+                } else if (cat.equals("Barang")) {
+                    spCategory.setSelection(1);
+                } else if (cat.equals("Uang")) {
+                    spCategory.setSelection(2);
+                } else {
+                    spCategory.setSelection(3);
+                }
+
+                if (nemuTemp.getPhoto() != "") {
+                    // download image
+                    DownloadImageAsync dl = new DownloadImageAsync(formNemu.this, nemuTemp.getPhoto(), imgPhoto);
+                    dl.execute();
+                }
+
+                pb.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(formNemu.this,"Data Gagal Dimuat", Toast.LENGTH_SHORT).show();
+                pb.dismiss();
+                finish();
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -134,6 +196,7 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imgPhoto.setImageBitmap(bitmap);
+                isImageChanged = true;
             }
             catch (IOException e)
             {
@@ -143,38 +206,47 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
     }
 
     public void uploadNemu() {
-        final String subject, category, description, location, phone, filename;
+//        final String subject, category, description, location, phone, filename;
 
-        subject      = etSubject.getText().toString();
-        category     = spCategory.getSelectedItem().toString();
-        description  = etDescription.getText().toString();
-        location     = etLocation.getText().toString();
-        phone        = etPhone.getText().toString();
+        nemuModel = new NemuModel();
+
+        nemuModel.setSubject(etSubject.getText().toString());
+        nemuModel.setCategory(spCategory.getSelectedItem().toString());
+        nemuModel.setDescription(etDescription.getText().toString());
+        nemuModel.setLocation(etLocation.getText().toString());
+        nemuModel.setPhone(etPhone.getText().toString());
+        nemuModel.setGoogleid(auth.getCurrentUser().getUid());
+        nemuModel.setFname(auth.getCurrentUser().getDisplayName());
+        nemuModel.setPhoto(nemuTemp.getPhoto());
+        nemuModel.setDate(DateFormat.getDateTimeInstance().format(new Date()));
+        nemuModel.setStatus("Belum");
 
         //Mendapatkan UserID dari pengguna yang Terautentikasi
-        String userID = auth.getCurrentUser().getUid();
-        String fname  = auth.getCurrentUser().getDisplayName();
-        String date   = DateFormat.getDateTimeInstance().format(new Date());
+        //String userID = auth.getCurrentUser().getUid();
+        //String fname  = auth.getCurrentUser().getDisplayName();
+        //String date   = ;
 
-        if (TextUtils.isEmpty(subject)) {
+        if (nemuModel.getSubject().isEmpty()) {
             etSubject.setError("Judul belum diisi");
-        } else if (TextUtils.isEmpty(description)) {
+        } else if (nemuModel.getDescription().isEmpty()) {
             etDescription.setError("Deskripsi belum diisi");
-        } else if (TextUtils.isEmpty(location)) {
+        } else if (nemuModel.getLocation().isEmpty()) {
             etLocation.setError("Lokasi belum diisi");
-        } else if (TextUtils.isEmpty(phone)) {
+        } else if (nemuModel.getPhone().isEmpty()) {
             etPhone.setError("Kontak belum diisi");
+        } else if (nemuModel.getPhone().length() < 9) {
+            etPhone.setError("Nomor telepon salah");
         } else {
             final ProgressDialog progressDialog = new ProgressDialog(formNemu.this);
             final ProgressDialog progress = new ProgressDialog(formNemu.this);
 
-            if(filePath != null) {
+            if(filePath != null && isImageChanged) {
                     progressDialog.setTitle("Mengunggah foto...");
                     progressDialog.show();
 
-                    filename = UUID.randomUUID().toString();
+                    nemuModel.setPhoto(UUID.randomUUID().toString());
 
-                    StorageReference ref = storageReference.child("images/"+ filename);
+                    StorageReference ref = storageReference.child("images/"+ nemuModel.getPhoto());
                     ref.putFile(filePath)
                             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
@@ -203,16 +275,16 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
                                 }
                             });
             } else {
-                filename = "";
                 isImageSaved = true;
             }
 
             if (!isUpdate) {
+                //insert
                 progress.setTitle("Menambahkan Data...");
                 progress.show();
 
                 dbRef.child(type).push()
-                        .setValue(new NemuModel(userID, fname, subject, category, description, location, phone, "Belum", date, filename))
+                        .setValue(nemuModel)
                         .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -232,27 +304,22 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
                             }
                         });
             } else {
+                //update
                 progress.setTitle("Memperbarui Data...");
                 progress.show();
 
-                dbRef.child(type).push()
-                        .setValue(new NemuModel(userID, fname, subject, category, description, location, phone, "Belum", date, filename))
-                        .addOnSuccessListener(this, new OnSuccessListener<Void>() {
+                dbRef.child(type)
+                        .child(nemuTemp.getId())
+                        .setValue(nemuModel)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 progress.dismiss();
-                                Toast.makeText(formNemu.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(formNemu.this, "Data Berhasil diubah", Toast.LENGTH_SHORT).show();
                                 isDataSaved = true;
                                 if (isImageSaved) {
                                     finish();
                                 }
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progress.dismiss();
-                                Toast.makeText(formNemu.this, "Gagal! "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
             }
