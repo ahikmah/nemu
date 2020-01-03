@@ -13,12 +13,14 @@ public class NemuModel {
     private String status;
     private String date;
     private String photo;
+    private String founderPhone;
+    private String founderName;
 
     public NemuModel () {
 
     }
 
-    public NemuModel(String googleid, String fname, String subject, String category, String description, String location, String phone, String status, String date, String photo) {
+    public NemuModel(String googleid, String fname, String subject, String category, String description, String location, String phone, String status, String date, String photo, String founderPhone, String founderName) {
         this.googleid = googleid;
         this.fname = fname;
         this.subject = subject;
@@ -29,6 +31,8 @@ public class NemuModel {
         this.status = status;
         this.date = date;
         this.photo = photo;
+        this.founderPhone = founderPhone;
+        this.founderName = founderName;
     }
 
     public String getId() {
@@ -117,5 +121,21 @@ public class NemuModel {
 
     public void setGoogleid(String googleid) {
         this.googleid = googleid;
+    }
+
+    public String getFounderPhone() {
+        return founderPhone;
+    }
+
+    public void setFounderPhone(String founderPhone) {
+        this.founderPhone = founderPhone;
+    }
+
+    public String getFounderName() {
+        return founderName;
+    }
+
+    public void setFounderName(String founderName) {
+        this.founderName = founderName;
     }
 }

@@ -198,6 +198,7 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> im
             tvStatus    = itemView.findViewById(R.id.tv_status);
             listItem    = itemView.findViewById(R.id.list_item);
             imgPhoto    = itemView.findViewById(R.id.img_thumb);
+            setIsRecyclable(false);
         }
 
         public void bindView(NemuModel nemu) {
@@ -207,6 +208,7 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> im
             tvStatus.setText(nemu.getStatus());
 
             String url = nemu.getPhoto();
+            //imgPhoto.setImageResource(R.drawable.lainnya);
             DownloadImageAsync dl = new DownloadImageAsync(context, url, imgPhoto);
             dl.execute();
         }

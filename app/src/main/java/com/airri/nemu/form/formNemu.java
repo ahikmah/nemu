@@ -206,37 +206,42 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
     }
 
     public void uploadNemu() {
-//        final String subject, category, description, location, phone, filename;
-
-        nemuModel = new NemuModel();
-
-        nemuModel.setSubject(etSubject.getText().toString());
-        nemuModel.setCategory(spCategory.getSelectedItem().toString());
-        nemuModel.setDescription(etDescription.getText().toString());
-        nemuModel.setLocation(etLocation.getText().toString());
-        nemuModel.setPhone(etPhone.getText().toString());
-        nemuModel.setGoogleid(auth.getCurrentUser().getUid());
-        nemuModel.setFname(auth.getCurrentUser().getDisplayName());
-        nemuModel.setPhoto(nemuTemp.getPhoto());
-        nemuModel.setDate(DateFormat.getDateTimeInstance().format(new Date()));
-        nemuModel.setStatus("Belum");
-
-        //Mendapatkan UserID dari pengguna yang Terautentikasi
-        //String userID = auth.getCurrentUser().getUid();
-        //String fname  = auth.getCurrentUser().getDisplayName();
-        //String date   = ;
-
-        if (nemuModel.getSubject().isEmpty()) {
+        if (TextUtils.isEmpty(etSubject.getText())) {
             etSubject.setError("Judul belum diisi");
-        } else if (nemuModel.getDescription().isEmpty()) {
+        } else if (TextUtils.isEmpty(etDescription.getText())) {
             etDescription.setError("Deskripsi belum diisi");
-        } else if (nemuModel.getLocation().isEmpty()) {
+        } else if (TextUtils.isEmpty(etLocation.getText())) {
             etLocation.setError("Lokasi belum diisi");
-        } else if (nemuModel.getPhone().isEmpty()) {
+        } else if (TextUtils.isEmpty(etPhone.getText())) {
             etPhone.setError("Kontak belum diisi");
-        } else if (nemuModel.getPhone().length() < 9) {
+        } else if (etPhone.getText().length() < 9) {
             etPhone.setError("Nomor telepon salah");
         } else {
+            nemuModel = new NemuModel();
+
+            nemuModel.setSubject(etSubject.getText().toString());
+            nemuModel.setCategory(spCategory.getSelectedItem().toString());
+            nemuModel.setDescription(etDescription.getText().toString());
+            nemuModel.setLocation(etLocation.getText().toString());
+            nemuModel.setPhone(etPhone.getText().toString());
+
+            nemuModel.setGoogleid(auth.getCurrentUser().getUid());
+            nemuModel.setFname(auth.getCurrentUser().getDisplayName());
+
+            nemuModel.setDate(DateFormat.getDateTimeInstance().format(new Date()));
+            nemuModel.setPhoto("");
+            nemuModel.setStatus("Belum");
+            nemuModel.setFounderPhone("");
+            nemuModel.setFounderName("");
+
+            if (isUpdate) {
+                nemuModel.setPhoto(nemuTemp.getPhoto());
+                nemuModel.setStatus(nemuTemp.getStatus());
+                nemuModel.setFounderPhone(nemuTemp.getFounderPhone());
+                nemuModel.setFounderName(nemuTemp.getFounderName());
+                nemuModel.setDate(nemuModel.getDate());
+            }
+
             final ProgressDialog progressDialog = new ProgressDialog(formNemu.this);
             final ProgressDialog progress = new ProgressDialog(formNemu.this);
 
