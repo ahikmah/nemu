@@ -46,6 +46,8 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
     private TextView tvTitle;
     private String type, id;
     private Boolean isUpdate = false;
+    private Boolean isDataSaved = false;
+    private Boolean isImageSaved = false;
 
     // upload foto
     private Uri filePath;
@@ -78,7 +80,7 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
             id = getIntent().getStringExtra("KEY_EXTRA");
         }
 
-        if (type == "Golek") {
+        if (type.equals("Golek")) {
             tvTitle.setText("Info Pencarian");
         } else {
             tvTitle.setText("Info Penemuan");
@@ -163,8 +165,10 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
         } else if (TextUtils.isEmpty(phone)) {
             etPhone.setError("Kontak belum diisi");
         } else {
+            final ProgressDialog progressDialog = new ProgressDialog(formNemu.this);
+            final ProgressDialog progress = new ProgressDialog(formNemu.this);
+
             if(filePath != null) {
-                    final ProgressDialog progressDialog = new ProgressDialog(this);
                     progressDialog.setTitle("Mengunggah foto...");
                     progressDialog.show();
 
@@ -177,6 +181,10 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                     progressDialog.dismiss();
                                     Toast.makeText(formNemu.this, "Foto terunggah", Toast.LENGTH_SHORT).show();
+                                    isImageSaved = true;
+                                    if (isDataSaved) {
+                                        finish();
+                                    }
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -196,9 +204,8 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
                             });
             } else {
                 filename = "";
+                isImageSaved = true;
             }
-
-            final ProgressDialog progress = new ProgressDialog(this);
 
             if (!isUpdate) {
                 progress.setTitle("Menambahkan Data...");
@@ -211,7 +218,10 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
                             public void onSuccess(Void aVoid) {
                                 progress.dismiss();
                                 Toast.makeText(formNemu.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
-                                finish();
+                                isDataSaved = true;
+                                if (isImageSaved) {
+                                    finish();
+                                }
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -232,7 +242,10 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
                             public void onSuccess(Void aVoid) {
                                 progress.dismiss();
                                 Toast.makeText(formNemu.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
-                                finish();
+                                isDataSaved = true;
+                                if (isImageSaved) {
+                                    finish();
+                                }
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
