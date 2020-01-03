@@ -44,7 +44,8 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
     private EditText etSubject, etDescription, etLocation, etPhone;
     private ImageView imgPhoto;
     private TextView tvTitle;
-    private String type;
+    private String type, id;
+    private Boolean isUpdate = false;
 
     // upload foto
     private Uri filePath;
@@ -71,6 +72,11 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
         type = getIntent().getStringExtra("TYPE_EXTRA");
         getSupportActionBar().setTitle(type);
         tvTitle = findViewById(R.id.tv_title);
+
+        if (getIntent().getStringExtra("KEY_EXTRA") != null) {
+            isUpdate = true;
+            id = getIntent().getStringExtra("KEY_EXTRA");
+        }
 
         if (type == "Golek") {
             tvTitle.setText("Info Pencarian");
@@ -193,26 +199,50 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
             }
 
             final ProgressDialog progress = new ProgressDialog(this);
-            progress.setTitle("Menambahkan Data...");
-            progress.show();
 
-            dbRef.child(type).push()
-                    .setValue(new NemuModel(userID, fname, subject, category, description, location, phone, "Belum", date, filename))
-                    .addOnSuccessListener(this, new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            progress.dismiss();
-                            Toast.makeText(formNemu.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            progress.dismiss();
-                            Toast.makeText(formNemu.this, "Gagal! "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            if (!isUpdate) {
+                progress.setTitle("Menambahkan Data...");
+                progress.show();
+
+                dbRef.child(type).push()
+                        .setValue(new NemuModel(userID, fname, subject, category, description, location, phone, "Belum", date, filename))
+                        .addOnSuccessListener(this, new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                progress.dismiss();
+                                Toast.makeText(formNemu.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progress.dismiss();
+                                Toast.makeText(formNemu.this, "Gagal! "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            } else {
+                progress.setTitle("Memperbarui Data...");
+                progress.show();
+
+                dbRef.child(type).push()
+                        .setValue(new NemuModel(userID, fname, subject, category, description, location, phone, "Belum", date, filename))
+                        .addOnSuccessListener(this, new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                progress.dismiss();
+                                Toast.makeText(formNemu.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progress.dismiss();
+                                Toast.makeText(formNemu.this, "Gagal! "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
         }
     }
 }

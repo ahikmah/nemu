@@ -96,9 +96,10 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> {
                         public void onClick(DialogInterface dialog, int i) {
                             switch (i){
                                 case 0:
-//                                    Intent intent = new Intent(context, formNemu.class);
-//                                    intent.putExtra("KEY_EXTRA", listNemu.get(position).getId());
-//                                    context.startActivity(intent);
+                                    Intent intent = new Intent(context, formNemu.class);
+                                    intent.putExtra("KEY_EXTRA", listNemu.get(position).getId());
+                                    intent.putExtra("TYPE_EXTRA", type);
+                                    context.startActivity(intent);
                                     break;
                                 case 1:
                                     AlertDialog.Builder builder = new AlertDialog.Builder(context);

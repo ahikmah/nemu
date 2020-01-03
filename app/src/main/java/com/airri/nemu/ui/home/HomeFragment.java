@@ -90,11 +90,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         rvNemu = root.findViewById(R.id.rv_list_golek_home);
         pbList = root.findViewById(R.id.pb_list_golek_home);
 
-        // mengatur recycler view
-        setRV();
+        if (auth.getCurrentUser() != null) {
+            // mengatur recycler view
+            setRV();
 
-        // mendapatkan data dari firebase
-        getData();
+            // mendapatkan data dari firebase
+            getData();
+        }
 
         return root;
     }
@@ -124,7 +126,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(),"Data Gagal Dimuat", Toast.LENGTH_SHORT).show();
+                if (auth.getCurrentUser() != null) {
+                    Toast.makeText(getActivity(),"Data Gagal Dimuat", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

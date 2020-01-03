@@ -31,7 +31,7 @@ public class ProfileFragment extends Fragment {
     private Button btnLogout;
     private CircularImageView imgPhoto;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         profileViewModel =
                 ViewModelProviders.of(this).get(ProfileViewModel.class);
@@ -71,14 +71,19 @@ public class ProfileFragment extends Fragment {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Statement program untuk logout/keluar
-                AuthUI.getInstance().signOut(getActivity());
-
                 // menampilkan toast
                 Toast toast = Toast.makeText(getActivity(), "Logout berhasil", Toast.LENGTH_SHORT);
                 toast.show();
 
+                // finish
                 getActivity().finish();
+
+                // Statement program untuk logout/keluar
+                AuthUI.getInstance().signOut(getActivity());
+
+                // membuka login
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
 
