@@ -1,5 +1,5 @@
 # Nemu App
-Aplikasi penemuan barang hilang
+Aplikasi penemuan barang hilang di Amikom. Pemilik dapat secara langsung mendapatkan informasi penemu barangnya.
 
 ### Fitur
 1. Cari Barang Hilang
