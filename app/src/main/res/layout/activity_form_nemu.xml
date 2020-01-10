@@ -145,6 +145,7 @@
 					android:layout_marginLeft="10dp"
 					android:layout_weight="1"
 					android:text="@string/upload"
+					android:textColor="#FFFFFF"
 					android:background="@drawable/btn_upload"/>
 			</LinearLayout>
 
