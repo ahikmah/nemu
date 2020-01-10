@@ -123,30 +123,47 @@
 				android:layout_marginTop="15dp"
 				android:text="@string/unggah_foto" />
 
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+				<ImageView
+					android:id="@+id/nemu_img_photo"
+					android:layout_width="150dp"
+					android:layout_height="150dp"
+					android:layout_marginHorizontal="00dp"
+					android:layout_weight="1"
+					android:adjustViewBounds="true"
+					android:scaleType="centerCrop"
+					android:src="@drawable/lainnya"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+
+				<Button
+					android:id="@+id/nemu_btn_upload"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="8dp"
+					android:layout_marginLeft="8dp"
+					android:layout_marginEnd="8dp"
+					android:layout_marginRight="8dp"
+					android:layout_weight="1"
+					android:background="@drawable/btn_upload"
+					android:text="@string/upload"
+					android:textColor="#FFFFFF"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toEndOf="@+id/nemu_img_photo"
+					app:layout_constraintTop_toTopOf="parent" />
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="10dp"
 				android:orientation="horizontal">
 
-				<ImageView
-					android:id="@+id/nemu_img_photo"
-					android:layout_width="200dp"
-					android:layout_height="100dp"
-					android:adjustViewBounds="true"
-					android:scaleType="centerCrop"
-					android:layout_weight="1"
-					android:src="@drawable/lainnya" />
-
-				<Button
-					android:id="@+id/nemu_btn_upload"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="10dp"
-					android:layout_weight="1"
-					android:text="@string/upload"
-					android:textColor="#FFFFFF"
-					android:background="@drawable/btn_upload"/>
 			</LinearLayout>
 
 			<Button
@@ -156,7 +173,8 @@
 				android:layout_marginTop="20dp"
 				android:text="@string/submit"
 				android:background="@drawable/btn_rounded"
-				android:textColor="#FFFFFF"/>
+				android:textColor="#FFFFFF"
+                android:layout_marginBottom="20dp"/>
 		</LinearLayout>
 	</ScrollView>
 
