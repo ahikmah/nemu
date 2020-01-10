@@ -49,7 +49,7 @@ public class DetailNemuActivity extends AppCompatActivity implements View.OnClic
     private TextView tvName, tvSubject, tvCategory, tvDescription, tvLocation, tvPhone, tvStatus, tvDate, tvFoundTitle, tvFoundName, tvFoundPhone;
     private ImageView imgPhoto;
     private Button btnFound, btnCall, btnFoundCall;
-    private LinearLayout foundInfo;
+    //private LinearLayout foundInfo;
     private EditText etContact;
 
     @Override
@@ -73,7 +73,7 @@ public class DetailNemuActivity extends AppCompatActivity implements View.OnClic
         imgPhoto = findViewById(R.id.img_detail_nemu);
         tvFoundTitle = findViewById(R.id.tv_found_title);
         btnFound = findViewById(R.id.btn_found);
-        foundInfo = findViewById(R.id.found_info);
+        //foundInfo = findViewById(R.id.found_info);
         tvFoundName = findViewById(R.id.found_info_name);
         tvFoundPhone = findViewById(R.id.found_info_phone);
         btnCall = findViewById(R.id.btn_call);
@@ -139,6 +139,7 @@ public class DetailNemuActivity extends AppCompatActivity implements View.OnClic
             tvFoundName.setVisibility(View.GONE);
             tvFoundPhone.setVisibility(View.GONE);
             btnFoundCall.setVisibility(View.GONE);
+            tvFoundTitle.setVisibility(View.GONE);
             if (type.equals("Nemu")) {
                 btnFound.setText("Ini milik saya");
             }

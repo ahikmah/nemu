@@ -38,7 +38,7 @@
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
 					android:text="TextView"
-					android:textColor="#3F51B5"
+					android:textColor="#111111"
 					android:textSize="14sp"
 					android:textStyle="bold" />
 
@@ -94,172 +94,170 @@
 				android:textColor="#000000"
 				android:textSize="15sp" />
 
+			<TableLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginTop="20dp">
+
+				<TableRow
+					android:layout_width="match_parent"
+					android:layout_height="match_parent" >
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:background="#03A9F4"
+						android:padding="5dp"
+						android:text="Lokasi"
+						android:textAlignment="center"
+						android:textColor="#FFFFFF"
+						android:textSize="15sp" />
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:background="#03A9F4"
+						android:padding="5dp"
+						android:text="Hubungi"
+						android:textAlignment="center"
+						android:textColor="#FFFFFF"
+						android:textSize="15sp" />
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:background="#03A9F4"
+						android:padding="5dp"
+						android:text="Status"
+						android:textAlignment="center"
+						android:textColor="#FFFFFF"
+						android:textSize="15sp" />
+				</TableRow>
+
+				<TableRow
+					android:layout_width="match_parent"
+					android:layout_height="match_parent" >
+
+					<TextView
+						android:id="@+id/tv_nemu_location"
+						android:layout_width="65dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:background="#0F2196F3"
+						android:padding="5dp"
+						android:text="basement 5"
+						android:textAlignment="center"
+						android:textColor="#000000"
+						android:textSize="15sp" />
+
+					<TextView
+						android:id="@+id/tv_nemu_phone"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:background="#0F2196F3"
+						android:padding="5dp"
+						android:text="TextView"
+						android:textAlignment="center"
+						android:textColor="#000000"
+						android:textSize="15sp" />
+
+					<TextView
+						android:id="@+id/tv_nemu_status"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:background="#0F2196F3"
+						android:padding="5dp"
+						android:text="TextView"
+						android:textAlignment="center"
+						android:textColor="#000000"
+						android:textSize="15sp" />
+				</TableRow>
+
+			</TableLayout>
+
+
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal"
-				android:paddingTop="25dp">
+				android:layout_height="match_parent"
+				android:layout_marginTop="20dp"
+				android:layout_weight="2"
+				android:orientation="horizontal">
 
-				<TextView
+				<Button
+					android:id="@+id/btn_call"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					android:layout_marginRight="10dp"
 					android:layout_weight="1"
-					android:background="#3F51B5"
-					android:padding="5dp"
-					android:text="Lokasi"
-					android:textAlignment="center"
-					android:textColor="#FFFFFF"
-					android:textSize="15sp" />
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:background="#3F51B5"
-					android:padding="5dp"
-					android:text="Hubungi"
-					android:textAlignment="center"
-					android:textColor="#FFFFFF"
-					android:textSize="15sp" />
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:background="#3F51B5"
-					android:padding="5dp"
-					android:text="Status"
-					android:textAlignment="center"
-					android:textColor="#FFFFFF"
-					android:textSize="15sp" />
-
-
-			</LinearLayout>
-
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal"
-				android:paddingBottom="15dp"
-
-				>
-
-				<TextView
-					android:id="@+id/tv_nemu_location"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:background="#0F2196F3"
-					android:padding="5dp"
-					android:text="basement 5"
-					android:textAlignment="center"
-					android:textColor="#000000"
-					android:textSize="15sp" />
-
-				<TextView
-					android:id="@+id/tv_nemu_phone"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:background="#0F2196F3"
-					android:padding="5dp"
-					android:text="TextView"
-					android:textAlignment="center"
-					android:textColor="#000000"
-					android:textSize="15sp" />
-
-				<TextView
-					android:id="@+id/tv_nemu_status"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:background="#0F2196F3"
-					android:padding="5dp"
-					android:text="TextView"
-					android:textAlignment="center"
-					android:textColor="#000000"
-					android:textSize="15sp" />
-
-			</LinearLayout>
-
-			<Button
-				android:id="@+id/btn_call"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="#3F51B5"
-				android:text="Telepon"
-				android:textColor="#FFFFFF" />
-
-			<LinearLayout
-				android:id="@+id/found_info"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="______________________________"
-					android:layout_gravity="center"
-					android:textAlignment="center"
-					android:padding="9dp"
-					/>
-
-				<TextView
-					android:id="@+id/tv_found_title"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:text="INFO PENEMUAN"
-					android:textSize="15sp"
-					android:textStyle="bold"
-					android:textColor="#000000"
-					android:padding="5dp"
-					/>
+					android:background="@drawable/btn_call"
+					android:drawableLeft="@drawable/ic_call"
+					android:drawableTint="@color/cardview_light_background"
+					android:padding="10dp"
+					android:layout_margin="5dp"
+					android:text="Hubungi Pencari"
+					android:textColor="#FFFFFF" />
 
 				<Button
 					android:id="@+id/btn_found"
-					android:layout_width="match_parent"
+					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Saya menemukannya"
-					android:background="#3F51B5"
+					android:layout_weight="1"
+					android:background="@drawable/btn_accent"
+					android:text="Saya Menemukan"
+					android:drawableLeft="@drawable/ic_box"
+					android:drawableTint="@color/cardview_light_background"
 					android:textColor="#FFFFFF"
-					/>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="vertical"
-					>
-
-					<TextView
-						android:id="@+id/found_info_name"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center"
-						android:text="Nama"
-						android:padding="20dp"/>
-
-					<TextView
-						android:id="@+id/found_info_phone"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center"
-						android:padding="20dp"
-						android:text="Telepon" />
-
-					<Button
-						android:id="@+id/btn_founder_call"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:background="@drawable/btn_upload"
-						android:text="Telepon"
-						android:textColor="#FFFFFF"
-						android:layout_marginBottom="20dp"/>
-				</LinearLayout>
+					android:padding="10dp"
+					android:layout_margin="5dp"/>
 
 			</LinearLayout>
+
+			<TextView
+				android:id="@+id/tv_found_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:padding="5dp"
+				android:layout_marginTop="10dp"
+				android:text="INFO PENEMU"
+				android:textColor="#000000"
+				android:textSize="16sp"
+				android:textStyle="bold" />
+
+			<TextView
+				android:id="@+id/found_info_name"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:padding="5dp"
+				android:text="Nama"
+				android:textStyle="bold"
+				android:textAlignment="center"/>
+
+			<TextView
+				android:id="@+id/found_info_phone"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:padding="5dp"
+				android:text="Telepon"
+				android:textAlignment="center"/>
+
+			<Button
+				android:id="@+id/btn_founder_call"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="20dp"
+				android:layout_marginTop="20dp"
+				android:background="@drawable/btn_call"
+				android:text="Hubungi Penemu"
+
+				android:textColor="#FFFFFF" />
 
 		</LinearLayout>
 	</ScrollView>
