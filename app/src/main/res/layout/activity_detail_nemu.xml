@@ -148,7 +148,7 @@
 						android:layout_weight="1"
 						android:background="#0F2196F3"
 						android:padding="5dp"
-						android:text="Text View"
+						android:text="TextView"
 						android:textAlignment="center"
 						android:textColor="#000000"
 						android:textSize="15sp" />
