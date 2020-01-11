@@ -39,6 +39,7 @@
 		android:ems="10"
 		android:maxLength="13"
 		android:inputType="phone"
+		android:hint="@string/tulis_no_telp"
 		android:background="@drawable/input"/>
 
 	<Button

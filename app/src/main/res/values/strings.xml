@@ -23,19 +23,19 @@
 	<string name="logout">Keluar</string>
 	<string name="nemu">Nemu</string>
 	<string name="golek">Golek</string>
-	<string name="info_penemuan_barang">Info Penemuan Barang</string>
+	<string name="info_penemuan_barang">Info Penemuan</string>
 	<string name="title">Judul</string>
-	<string name="tulis_nama_barang">Tulis Nama Barang</string>
+	<string name="tulis_nama_barang">Tulis judul</string>
 	<string name="categories">Kategori</string>
 	<string name="description">Deskripsi</string>
-	<string name="tulis_deskripsi_barang">Tulis deskripsi barang</string>
+	<string name="tulis_deskripsi_barang">Tulis deskripsi</string>
 	<string name="location">Lokasi</string>
 	<string name="tulis_lokasi_penemuan">Tulis lokasi penemuan</string>
 	<string name="contact">Kontak</string>
 	<string name="unggah_foto">Unggah Foto</string>
 	<string name="upload">Unggah</string>
 	<string name="submit">Kirim</string>
-	<string name="info_pencarian_barang">Info Pencarian Barang</string>
+	<string name="info_pencarian_barang">Info Pencarian</string>
 	<string name="tulis_lokasi_kehilangan">Tulis lokasi kehilangan</string>
 	<string name="category">Kategori :</string>
 	<string name="status">Status :</string>
@@ -47,8 +47,9 @@
 	<string name="penemuan">Penemuan</string>
 	<string name="aku_nemu">Aku Nemu</string>
 	<string name="aku_golek">Aku Golek</string>
-	<string name="search_hint">Deskripsi barang...</string>
+	<string name="search_hint">Deskripsi...</string>
 	<string name="action_search">Cari</string>
+	<string name="tulis_no_telp">Tulis no.telp</string>
 
 	<string-array name="category">
 		<item>Pakaian</item>

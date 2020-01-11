@@ -24,7 +24,8 @@
 				android:layout_height="wrap_content"
 				android:textSize="28sp"
 				android:text="@string/info_penemuan_barang"
-				android:layout_marginBottom="20dp"/>
+				android:layout_marginBottom="20dp"
+				android:layout_marginTop="20dp"/>
 
 			<TextView
 				android:layout_width="match_parent"
@@ -113,6 +114,7 @@
 				android:maxLength="13"
 				android:imeOptions="actionNext"
 				android:singleLine="true"
+				android:hint="@string/tulis_no_telp"
 				android:background="@drawable/input"/>
 
 			<TextView
@@ -121,6 +123,7 @@
 				android:textSize="14sp"
 				android:textStyle="bold"
 				android:layout_marginTop="15dp"
+				android:layout_marginBottom="5dp"
 				android:text="@string/unggah_foto" />
 
 			<androidx.constraintlayout.widget.ConstraintLayout

@@ -142,13 +142,19 @@ public class DetailNemuActivity extends AppCompatActivity implements View.OnClic
             tvFoundTitle.setVisibility(View.GONE);
             if (type.equals("Nemu")) {
                 btnFound.setText("Ini milik saya");
+                btnCall.setText("Hubungi Penemu");
             }
         } else {
             btnFound.setVisibility(View.GONE);
             tvFoundName.setVisibility(View.VISIBLE);
             tvFoundPhone.setVisibility(View.VISIBLE);
             btnFoundCall.setVisibility(View.VISIBLE);
+            tvFoundTitle.setVisibility(View.VISIBLE);
 
+            if (type.equals("Nemu")) {
+                btnFoundCall.setText("Hubungi Pencari");
+                btnCall.setText("Hubungi Penemu");
+            }
             tvFoundName.setText(nemuDetail.getFounderName());
             tvFoundPhone.setText(nemuDetail.getFounderPhone());
         }

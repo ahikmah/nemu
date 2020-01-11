@@ -11,7 +11,7 @@
 		android:id="@+id/pb_detail_nemu"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"/>
+		android:layout_gravity="center"/>
 
 	<ScrollView
 		android:layout_width="match_parent"
@@ -248,7 +248,8 @@
 				android:text="INFO PENEMU"
 				android:textColor="#000000"
 				android:textSize="16sp"
-				android:textStyle="bold" />
+				android:textStyle="bold"
+				android:visibility="gone"/>
 
 			<TextView
 				android:id="@+id/found_info_name"
@@ -258,7 +259,8 @@
 				android:padding="5dp"
 				android:text="Nama"
 				android:textStyle="bold"
-				android:textAlignment="center"/>
+				android:textAlignment="center"
+				android:visibility="gone"/>
 
 			<TextView
 				android:id="@+id/found_info_phone"
@@ -267,7 +269,8 @@
 				android:layout_gravity="center"
 				android:padding="5dp"
 				android:text="Telepon"
-				android:textAlignment="center"/>
+				android:textAlignment="center"
+				android:visibility="gone"/>
 
 			<Button
 				android:id="@+id/btn_founder_call"
@@ -276,8 +279,11 @@
 				android:layout_marginBottom="20dp"
 				android:layout_marginTop="20dp"
 				android:background="@drawable/btn_call"
+				android:drawableLeft="@drawable/ic_call"
+				android:drawableTint="@color/cardview_light_background"
+				android:padding="10dp"
 				android:text="Hubungi Penemu"
-
+				android:visibility="gone"
 				android:textColor="#FFFFFF" />
 
 		</LinearLayout>

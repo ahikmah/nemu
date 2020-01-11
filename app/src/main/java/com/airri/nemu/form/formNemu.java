@@ -82,18 +82,11 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
 
         type = getIntent().getStringExtra("TYPE_EXTRA");
         getSupportActionBar().setTitle(type);
-        tvTitle = findViewById(R.id.tv_title);
 
         if (getIntent().getStringExtra("KEY_EXTRA") != null) {
             isUpdate = true;
             id = getIntent().getStringExtra("KEY_EXTRA");
             getData();
-        }
-
-        if (type.equals("Golek")) {
-            tvTitle.setText("Info Pencarian");
-        } else {
-            tvTitle.setText("Info Penemuan");
         }
 
         // get instance
@@ -106,6 +99,7 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
         dbRef = database.getReference();
 
         // inisialisasi
+        tvTitle       = findViewById(R.id.tv_title);
         btnSubmit     = findViewById(R.id.nemu_btn_submit);
         btnUpload     = findViewById(R.id.nemu_btn_upload);
         etSubject     = findViewById(R.id.nemu_et_subject);
@@ -117,6 +111,15 @@ public class formNemu extends AppCompatActivity implements View.OnClickListener 
         // event klik
         btnSubmit.setOnClickListener(this);
         btnUpload.setOnClickListener(this);
+
+
+        if (type.equals("Golek")) {
+            tvTitle.setText("Info Pencarian");
+            etLocation.setHint("Tulis lokasi kehilangan");
+        } else {
+            tvTitle.setText("Info Penemuan");
+            etLocation.setHint("Tulis lokasi penemuan");
+        }
     }
 
     private void getData() {

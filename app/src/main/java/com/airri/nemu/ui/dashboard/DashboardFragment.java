@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,6 +57,7 @@ public class DashboardFragment extends Fragment {
     private String type;
     private ProgressBar pbList;
     private SearchView searchView;
+    private TextView tvMylist;
 
     //Deklarasi Variable untuk RecyclerView
     private RecyclerView rvNemu;
@@ -84,6 +86,7 @@ public class DashboardFragment extends Fragment {
         //inisialiassi
         rvNemu = root.findViewById(R.id.rv_item_nemu);
         pbList = root.findViewById(R.id.pb_list_dashboard);
+        tvMylist = root.findViewById(R.id.tv_mylist);
 
         spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -95,6 +98,13 @@ public class DashboardFragment extends Fragment {
 
                 // mengatur recycler view
                 setRV(type);
+
+                // mengubah judul
+                if (type.equals("Nemu")) {
+                    tvMylist.setText("Daftar penemuan saya");
+                } else {
+                    tvMylist.setText("Daftar pencarian saya");
+                }
             }
 
             @Override

@@ -207,6 +207,12 @@ public class NemuAdapter extends RecyclerView.Adapter<NemuAdapter.ViewHolder> im
             tvCategory.setText(nemu.getCategory());
             tvStatus.setText(nemu.getStatus());
 
+            if (nemu.getStatus().equals("Belum")) {
+                tvStatus.setBackgroundResource(R.drawable.badge_red);
+            } else {
+                tvStatus.setBackgroundResource(R.drawable.badge_tosca);
+            }
+
             String url = nemu.getPhoto();
             //imgPhoto.setImageResource(R.drawable.lainnya);
             DownloadImageAsync dl = new DownloadImageAsync(context, url, imgPhoto);
