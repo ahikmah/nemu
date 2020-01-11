@@ -1,9 +1,9 @@
 <resources>
 	<string name="app_name">Nemu</string>
 	<string name="title_login">Login</string>
-	<string name="title_home">Home</string>
+	<string name="title_home">Beranda</string>
 	<string name="title_dashboard">Dashboard</string>
-	<string name="title_notifications">Notifications</string>
+	<string name="title_notifications">Notifikasi</string>
 	<string name="title_activity_login">Masuk</string>
 
 	<string name="dummy">This is text</string>
@@ -12,20 +12,20 @@
 	<string name="prompt_email">Email</string>
 	<string name="prompt_password">Password</string>
 
-	<string name="action_sign_in">Sign in or register</string>
-	<string name="action_sign_in_short">Sign in</string>
+	<string name="action_sign_in">Masuk atau Daftar akun</string>
+	<string name="action_sign_in_short">Masuk</string>
 
-	<string name="invalid_username">Not a valid username</string>
-	<string name="invalid_password">Password must be >5 characters</string>
+	<string name="invalid_username">Username yang Anda inputkan salah</string>
+	<string name="invalid_password">Password harus lebih dari 5 karakter</string>
 
 	<string name="login_failed">"Login failed"</string>
 	<string name="title_profile">Profile</string>
-	<string name="logout">Logout</string>
+	<string name="logout">Keluar</string>
 	<string name="nemu">Nemu</string>
 	<string name="golek">Golek</string>
 	<string name="info_penemuan_barang">Info Penemuan Barang</string>
 	<string name="title">Judul</string>
-	<string name="tulis_nama_barang">Tulis nama barang</string>
+	<string name="tulis_nama_barang">Tulis Nama Barang</string>
 	<string name="categories">Kategori</string>
 	<string name="description">Deskripsi</string>
 	<string name="tulis_deskripsi_barang">Tulis deskripsi barang</string>
@@ -34,7 +34,7 @@
 	<string name="contact">Kontak</string>
 	<string name="unggah_foto">Unggah Foto</string>
 	<string name="upload">Unggah</string>
-	<string name="submit">Submit</string>
+	<string name="submit">Kirim</string>
 	<string name="info_pencarian_barang">Info Pencarian Barang</string>
 	<string name="tulis_lokasi_kehilangan">Tulis lokasi kehilangan</string>
 	<string name="category">Kategori :</string>
